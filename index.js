@@ -15,12 +15,14 @@ alert(`Mes ${i}: ${resultado.toFixed(2)} USD`);
 /* Pregunta si desea continuar invirtiendo */
 let confirmacion= prompt("¿Desea continuar invirtiendo?")
 while(confirmacion!=="No"){
-    alert("Tu dinero sigue trabajando por ti");
     break;
 }
 /* Corta el ciclo en caso de que el usuario no desee continuar invirtiendo */
 if(confirmacion==="no"){
     alert("Fue un placer servirte");
     break;
+}
+else{
+    alert("Tu dinero sigue trabajando por ti");
 }
 }
