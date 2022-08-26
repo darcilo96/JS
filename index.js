@@ -1,5 +1,7 @@
+/* Simulador de inversiones controladas mensualmente */
+
 /* Ingrese la tasa en porcentaje (ejemplo: 30% ===> 30) */
-let tasa=parseInt(prompt("Ingrese la tasa de rentabilidad (ejemplo: 30% ===> 30)"));
+let tasa=parseInt(prompt("Ingrese la tasa de rentabilidad de tu inversión (ejemplo: si es el 30% ===>  entonces escribes 30)"));
 /* Ingrese el monto a invertir (USD) */
 let monto=parseInt(prompt("Ingrese el monto a invertir (USD)"));
 /* Ingrese el tiempo de inversión(meses) */
@@ -22,6 +24,7 @@ if(confirmacion==="no"){
     alert("Fue un placer servirte");
     break;
 }
+/* Indica al usuario que su dinero continúa trabajando*/
 else{
     alert("Tu dinero sigue trabajando por ti");
 }
