@@ -1,31 +1,37 @@
-/* Simulador de inversiones controladas mensualmente */
+//Array con opciones
+const overdrives = [
+{ id: 1, nombre: "Morning Glory V4", marca: "JHS Pedals", precio: 199, genero: "worship" },
+{ id: 2, nombre: "Tube Screamer TS9", marca: "Ibanez", precio: 150, genero: "blues" },
+{ id: 3, nombre: "The Duellist", marca: "King Tone", precio: 350, genero: "blues" },
+{ id: 4, nombre: "Double Barrel", marca: "JHS Pedals", precio: 345, genero: "worship" },
+{ id: 5, nombre: "Ages", marca: "Walrus Audio", precio: 199, genero: "rock" },
+{ id: 6, nombre: "ACS1", marca: "Walrus Audio", precio: 399, genero: "rock" },
+{ id: 7, nombre: "Tube Screamer TS8", marca: "Ibanez", precio: 130, genero: "blues" },
+{ id: 8, nombre: "Gravity", marca: "Nordvang Custom", precio: 260, genero: "blues" },
+{ id: 9, nombre: "1981 DRV", marca: "1981 Inventions", precio: 250, genero: "worship" },
+{ id: 10, nombre: "OCD", marca: "Full Tone", precio: 60, genero: "rock" },
+]
 
-/* Ingrese la tasa en porcentaje (ejemplo: 30% ===> 30) */
-let tasa=parseInt(prompt("Ingrese la tasa de rentabilidad de tu inversión (ejemplo: si es el 30% ===>  entonces escribes 30)"));
-/* Ingrese el monto a invertir (USD) */
-let monto=parseInt(prompt("Ingrese el monto a invertir (USD)"));
-/* Ingrese el tiempo de inversión(meses) */
-let tiempo=parseInt(prompt("Ingrese el tiempo de inversión (en meses)"));
+let nombreUsuario = prompt("Bienvenido a FRETBOARD.COM. Ingresa tu nombre por favor:")
+let escogerDrive = parseInt(prompt(`${nombreUsuario}, en cuál de los siguientes Overdrives estás interesad@? Indica el número
+\n 1: Morning Glory V4 (199 USD)
+\n 2: Tube Screamer TS9 (150 USD )
+\n 3: The Duellist(350 USD)
+\n 4: Double Barrel (345 USD)
+\n 5: Ages(199 USD)
+\n 6: ACS1 (399 USD)
+\n 7: Tube Screamer TS8 (130 USD )
+\n 8: Gravity (260 USD)
+\n 9: 1981 DRV (250 USD)
+\n 10: OCD (60 USD)
+`))
 
-/*Se realiza la iteración para mostrar el saldo mensual*/
-for(let i=0; i<=tiempo; i++){
-/*Se aplica la fórmula del interés compuesto */
-let rentabilidad=(1+tasa/100)**(i);
-let resultado= monto*(rentabilidad);
-/* Se muestra el seguimiento de cada mes */
-alert(`Mes ${i}: ${resultado.toFixed(2)} USD`);
-/* Pregunta si desea continuar invirtiendo */
-let confirmacion= prompt("¿Desea continuar invirtiendo?")
-while(confirmacion!=="No"){
-    break;
+const driveEscogido = overdrives.find(drive => drive.id === escogerDrive)
+
+function Mensaje(driveEscogido) {
+if (escogerDrive > 0 && escogerDrive <= 10) {
+    alert(`${nombreUsuario}, el overdrive escogido es el ${driveEscogido.nombre}, de la marca ${driveEscogido.marca} y cuesta ${driveEscogido.precio}. Esta opción es útil para ti si tu género de énfasis es ${driveEscogido.genero}`)
+} else { alert(`${nombreUsuario},por favor elige una opción válida`) }
 }
-/* Corta el ciclo en caso de que el usuario no desee continuar invirtiendo */
-if(confirmacion==="no"){
-    alert("Fue un placer servirte");
-    break;
-}
-/* Indica al usuario que su dinero continúa trabajando*/
-else{
-    alert("Tu dinero sigue trabajando por ti");
-}
-}
+
+Mensaje(driveEscogido);
