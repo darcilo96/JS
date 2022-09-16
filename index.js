@@ -1,4 +1,7 @@
-//Array con opciones
+//Llamamos al objeto que será el padre de los elementos
+const contenedor = document.getElementById("contenedor");
+
+//Array compuesto con diferentes objetos que contienen los overdrives
 const overdrives = [
 { id: 1, nombre: "Morning Glory V4", marca: "JHS Pedals", precio: 199, genero: "worship" },
 { id: 2, nombre: "Tube Screamer TS9", marca: "Ibanez", precio: 150, genero: "blues" },
@@ -11,6 +14,15 @@ const overdrives = [
 { id: 9, nombre: "1981 DRV", marca: "1981 Inventions", precio: 250, genero: "worship" },
 { id: 10, nombre: "OCD", marca: "Full Tone", precio: 60, genero: "rock" },
 ]
+
+for(const overdrive of overdrives){
+    let item = document.createElement("div");
+    item.innerHTML = `<h2> ID: ${overdrive.id} </h2>
+                    <h2> Nombre: ${overdrive.nombre} </h2>
+                    <p> Precio: ${overdrive.precio} USD</p>
+                    <p> Marca: ${overdrive.marca} </p>`;
+    contenedor.append(item);
+}
 
 let nombreUsuario = prompt("Bienvenido a FRETBOARD.COM. Ingresa tu nombre por favor:")
 let escogerDrive = parseInt(prompt(`${nombreUsuario}, en cuál de los siguientes Overdrives estás interesad@? Indica el número
@@ -30,7 +42,7 @@ const driveEscogido = overdrives.find(drive => drive.id === escogerDrive)
 
 function Mensaje(driveEscogido) {
 if (escogerDrive > 0 && escogerDrive <= 10) {
-    alert(`${nombreUsuario}, el overdrive escogido es el ${driveEscogido.nombre}, de la marca ${driveEscogido.marca} y cuesta ${driveEscogido.precio}. Esta opción es útil para ti si tu género de énfasis es ${driveEscogido.genero}`)
+    alert(`${nombreUsuario}, el overdrive escogido es el ${driveEscogido.nombre}, de la marca ${driveEscogido.marca} y cuesta ${driveEscogido.precio} USD. Esta opción es útil para ti si tu género de énfasis es ${driveEscogido.genero}`)
 } else { alert(`${nombreUsuario},por favor elige una opción válida`) }
 }
 
