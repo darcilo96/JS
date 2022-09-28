@@ -1,0 +1,15 @@
+header{
+    display: flex;
+    justify-content: center;
+}
+.general{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.general div{
+    padding: 3em;
+}
+.general img{
+    width: 300px;
+}
