@@ -2,7 +2,10 @@
 const contenedor = document.getElementById("contenedor");
 
 //Llamamos al objeto que será el padre de los elementos, en este caso el contenedor del carrito
-const carrito = document.getElementById("carrito")
+
+const contenedorCarrito = document.getElementById('carritoContenedor');
+
+const carrito = [];
 
 //Array compuesto con diferentes objetos que contienen los overdrives
 const overdrives = [
@@ -16,7 +19,7 @@ const overdrives = [
 { id: 8, nombre: "Gravity", marca: "Nordvang Custom", precio: 260, genero: "blues", img: "./img/8.jpg" },
 { id: 9, nombre: "1981 DRV", marca: "1981 Inventions", precio: 250, genero: "worship", img: "./img/9.jpg" },
 { id: 10, nombre: "Steel String MK2", marca: "Vertex Effects", precio: 60, genero: "rock", img: "./img/10.jpg" },
-{ id: 11, nombre: "Timmy", marca: "MXR", precio: 130, genero: "worship", img: "./img/11.webp" },
+{ id: 11, nombre: "Timmy", marca: "MXR", precio: 130, genero: "worship", img: "./img/11.jpg" },
 { id: 12, nombre: "Soul Food", marca: "EHX", precio: 100, genero: "blues", img: "./img/12.jpg" },
 ]
 
@@ -31,6 +34,35 @@ for(const overdrive of overdrives){
                     <button id="${overdrive.id}">Agregar al carrito</button>`
     contenedor.appendChild(item);
 
+    const boton = document.getElementById(`${overdrive.id}`);
+
+    boton.addEventListener('click', () => {
+        agregarProducto(overdrives.id)
+    })
+
+}
+
+const agregarProducto = (prodId) => {
+    const producto = overdrives.find((prod) => prod.id === prodId);
+    carrito.push(producto);
+    actualizarCarrito();
+    console.log(carrito);
+}
+
+const actualizarCarrito = () => {
+    contenedorCarrito.innerHTML = ""
+
+    carrito.forEach((prod) => {
+        const div = document.createElement('div');
+        div.className = ('productoEnCarrito')
+        div.innerHTML = `
+        <p>${prod.nombre}</p>
+        <p>Precio: ${prod.precio}</p>
+        <p><span id="cantidad">${prod.cantidad}</span></p>
+        <button onclick = "eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="fas fa-trash-alt"></button>`
+
+        contenedorCarrito.appendChild(div);
+    })
 }
 
 /* let nombreUsuario = prompt("Bienvenido a FRETBOARD.COM. Ingresa tu nombre por favor:")
