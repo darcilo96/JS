@@ -2,7 +2,7 @@ header{
     display: flex;
     justify-content: center;
     font-family: 'bebas neue';
-    font-size: 2em;
+    font-size: 3em;
 }
 .general{
     display: flex;
@@ -26,12 +26,6 @@ header{
     color: white;
     border:none;
     height: 2em;
-    width: 15vw;
-}
-.general button:hover{
-    scale: 1.1;
-    transition: 0.4s;
-    cursor: pointer;
 }
 .general img{
     width: 300px;
