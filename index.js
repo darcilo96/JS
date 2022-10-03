@@ -5,8 +5,6 @@ const contenedor = document.getElementById("contenedor");
 
 const contenedorCarrito = document.getElementById('carritoContenedor');
 
-const carrito = [];
-
 //Array compuesto con diferentes objetos que contienen los overdrives
 const overdrives = [
 { id: 1, nombre: "Morning Glory V4", marca: "JHS Pedals", precio: 199, genero: "worship", img: "./img/1.jpg" },
@@ -34,57 +32,57 @@ for(const overdrive of overdrives){
                     <button id="${overdrive.id}">Agregar al carrito</button>`
     contenedor.appendChild(item);
 
-    const boton = document.getElementById(`${overdrive.id}`);
-
-    boton.addEventListener('click', () => {
-        agregarProducto(overdrives.id)
-    })
+    
 
 }
 
-const agregarProducto = (prodId) => {
-    const producto = overdrives.find((prod) => prod.id === prodId);
-    carrito.push(producto);
-    actualizarCarrito();
+const productos = [
+    { id: 1, nombre: "Morning Glory V4", marca: "JHS Pedals", precio: 199, genero: "worship", img: "./img/1.jpg" },
+    { id: 2, nombre: "Tube Screamer TS9", marca: "Ibanez", precio: 150, genero: "blues", img: "./img/2.jpg" },
+    { id: 3, nombre: "The Duellist", marca: "King Tone", precio: 350, genero: "blues", img: "./img/3.jpg" },
+    ]
+
+    localStorage.setItem("carrito", JSON.stringify(productos));
+
+    let carrito = JSON.parse(localStorage.getItem("carrito"));
+
+    let cerrarModal = document.querySelectorAll(".cerrar")[0];
+    let modalC = document.querySelectorAll(".modalContenedor")[0];
+    let modal = document.querySelectorAll(".modalCarrito")[0];
+    let abrirModal =  document.querySelectorAll(".abrir")[0];
+
+    cerrarModal.addEventListener("click",function(e){
+        e.preventDefault()
+        modal.style.transform = "translateY(-200vh)";
+        modal.style.transition = "0.7s";
+        modalC.style.opacity = "0";
+        modalC.style.transition = "0.7s";
+        modalC.style.visibility = "hidden";
+    }
+    )
+
+    abrirModal.addEventListener("click",function(e){
+        e.preventDefault()
+        modal.style.transform = "translateY(0)";
+        modal.style.transition = "0.7s";
+        modalC.style.opacity = "1";
+        modalC.style.transition = "0.7s";
+        modalC.style.visibility = "visible";
+    }
+    )
+
+
+/* const n = parseInt(prompt("Ingrese el número de datos"));
+
+for(let i=0; i<n; i++){
+    let dato = prompt("Ingrese el dato");
+    carrito.push(dato);
     console.log(carrito);
 }
 
-const actualizarCarrito = () => {
-    contenedorCarrito.innerHTML = ""
+carrito.forEach(itm){
+    let div = document.createElement("div");
+    div.innerHTML = carrito.find()
+} */
 
-    carrito.forEach((prod) => {
-        const div = document.createElement('div');
-        div.className = ('productoEnCarrito')
-        div.innerHTML = `
-        <p>${prod.nombre}</p>
-        <p>Precio: ${prod.precio}</p>
-        <p><span id="cantidad">${prod.cantidad}</span></p>
-        <button onclick = "eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="fas fa-trash-alt"></button>`
 
-        contenedorCarrito.appendChild(div);
-    })
-}
-
-/* let nombreUsuario = prompt("Bienvenido a FRETBOARD.COM. Ingresa tu nombre por favor:")
-let escogerDrive = parseInt(prompt(`${nombreUsuario}, en cuál de los siguientes Overdrives estás interesad@? Indica el número
-\n 1: Morning Glory V4 (199 USD)
-\n 2: Tube Screamer TS9 (150 USD )
-\n 3: The Duellist(350 USD)
-\n 4: Double Barrel (345 USD)
-\n 5: Ages(199 USD)
-\n 6: ACS1 (399 USD)
-\n 7: Tube Screamer TS8 (130 USD )
-\n 8: Gravity (260 USD)
-\n 9: 1981 DRV (250 USD)
-\n 10: OCD (60 USD)
-`))
-
-const driveEscogido = overdrives.find(drive => drive.id === escogerDrive)
-
-function Mensaje(driveEscogido) {
-if (escogerDrive > 0 && escogerDrive <= 10) {
-    alert(`${nombreUsuario}, el overdrive escogido es el ${driveEscogido.nombre}, de la marca ${driveEscogido.marca} y cuesta ${driveEscogido.precio} USD. Esta opción es útil para ti si tu género de énfasis es ${driveEscogido.genero}`)
-} else { alert(`${nombreUsuario},por favor elige una opción válida`) }
-}
-
-Mensaje(driveEscogido); */

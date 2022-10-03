@@ -13,10 +13,21 @@
 <body>
     <header>
         <h1>FRETBOARD SHOP</h1>
+        <button class="abrir">Carrito de compras</button>
     </header>
-    <div id="contenedor" class="general">
+    <div class="modalContenedor">
+        <div class="modalCarrito">
+            <div class="carritoEncabezado">
+                <h3>Carrito</h3>
+                <button id="carritoCerrar" class="cerrar"><i class="cerrar">X</i></button>
+            </div>
+            <div id="carritoContenedor">
+            </div>
+            <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
+            <button id="vaciarCarrito" class="botonVaciar">Vaciar carrito</button>
+        </div>
     </div>
-    <div id="carritoContenedor"></div>
+    <div id="contenedor" class="general"></div>
     <script src="./index.js"></script>
 </body>
 </html>
