@@ -42,10 +42,6 @@ body{
 .productoEnCarrito{
     background-color: black;
 }
-.modalCarrito{
-    display: flex;
-    justify-content: center;
-}
 .modalContenedor{
     padding: 0;
     border: 0;
@@ -63,7 +59,6 @@ body{
 }
 
 .modalCarrito{
-    height: 50vh;
     background-color: rgba(255, 255, 255, 0.8);
     width: 60vw;
     display: flex;
@@ -72,6 +67,8 @@ body{
     align-items: center;
     justify-content: center;
     transform: translateY(-200vh);
+    padding-bottom: 2em;
+    font-family: 'Montserrat','sans-serif';
 }
 
 .carritoEncabezado{
@@ -122,4 +119,27 @@ body{
 }
 .abrir:visited{
     color:black;
+}
+.items{
+    display: flex;
+    align-items: center;
+}
+.items p{
+    padding: 0 1em 0 1em;
+}
+.items button{
+    background-color:rgba(243, 47, 70);
+    border-radius: 50%;
+    border-color: transparent;
+    color:white;
+    height: 1.5em;
+    cursor: pointer;
+}
+#contadorCarrito{
+    font-size: 0.8em;
+    background-color: white;
+    border-radius: 10px;
+    color:black;
+    width: 2em;
+    border: 2em;
 }
