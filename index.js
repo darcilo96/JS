@@ -15,6 +15,15 @@ const precioTotal = document.getElementById('precioTotal');
 
 const precioProducto = document.getElementsByClassName('precioProducto');
 
+let carrito = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('carrito')){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+    }
+})
+
 //Array compuesto con diferentes objetos que contienen los overdrives
 const overdrives = [
 { id: 1, nombre: "Morning Glory V4",cantidad: 1, marca: "JHS Pedals", precio: 199, genero: "worship", img: "./img/1.jpg" },
@@ -30,15 +39,6 @@ const overdrives = [
 { id: 11, nombre: "Timmy",cantidad: 1, marca: "MXR", precio: 130, genero: "worship", img: "./img/11.jpg" },
 { id: 12, nombre: "Soul Food",cantidad: 1, marca: "EHX", precio: 100, genero: "blues", img: "./img/12.jpg" },
 ]
-
-const carrito = [];
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('carrito')){
-        carrito = JSON.parse(localStorage.getItem('carrito'));
-        actualizarCarrito();
-    }
-})
 
 botonVaciar.addEventListener("click", () => {
     carrito.length = 0;
@@ -104,7 +104,7 @@ const actualizarCarrito = () => {
 
     carritoContenedor.appendChild(div);
 
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     })
 
     contadorCarrito.innerText = carrito.length;
