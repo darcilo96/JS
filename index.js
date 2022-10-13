@@ -10,13 +10,16 @@ const botonVaciar = document.getElementById('vaciarCarrito');
 //Llamamos el botón que se encargará de vaciar el carrito
 const contadorCarrito = document.getElementById('contadorCarrito');
 
-//Llamamos el botón que se encargará de vaciar el carrito
+//Llamamos el la parte del texto que exhibe el precio total
 const precioTotal = document.getElementById('precioTotal');
 
+//Llamamos la parte del precio de cada producto
 const precioProducto = document.getElementsByClassName('precioProducto');
 
+//Se define inicialmente el carrito como un array vacío
 let carrito = [];
 
+//Se define un evento en el que al agregar el DOM al carrito, se realice un almacenamiento en el localStorage
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('carrito')){
         carrito = JSON.parse(localStorage.getItem('carrito'))
@@ -40,6 +43,7 @@ const overdrives = [
 { id: 12, nombre: "Soul Food",cantidad: 1, marca: "EHX", precio: 100, genero: "blues", img: "./img/12.jpg" },
 ]
 
+//Se define el evento en el que se da click en el botón "vaciar el carrito" y se indica que cuando la longitud del array sea cero, se limpie el local storage
 botonVaciar.addEventListener("click", () => {
     carrito.length = 0;
     localStorage.clear();
@@ -57,6 +61,7 @@ for(const overdrive of overdrives){
                     
     contenedor.appendChild(div);
 
+    //Esta parte del código permite que cuando se presione el botón, el elemento se añada al carrito
     const boton = document.getElementById(`agregar${overdrive.id}`);
 
     boton.addEventListener("click", () => {
@@ -64,6 +69,7 @@ for(const overdrive of overdrives){
     })
 }
 
+// Se le indica al programa que busque si el elemento que se está agregando al carrito ya existe, en caso de que si, simplemente le incrementa la cantidad, en cado de que no, entonces lo agrega como un nuevo elemento al carrito
 const agregarAlCarrito = (prodID) => {
 
     const existe = carrito.some (prod => prod.id === prodID)
@@ -82,6 +88,7 @@ const agregarAlCarrito = (prodID) => {
     actualizarCarrito();
 }
 
+//Se define la función que elimina el elemento del array que compone el carrito y adicionalmente, si la longitud del array carrito es igual a cero, se limpia el local Storage para evitar objetos residuales
 const eliminarDelCarrito = (prodID) => {
     const item = carrito.find((prod) => prod.id === prodID);
     const indice = carrito.indexOf(item);
@@ -92,6 +99,7 @@ const eliminarDelCarrito = (prodID) => {
     actualizarCarrito();
 }
 
+//Se definen los elementos que se agregarán al carrito cuando se actualice, comenzando con un innerHTML vacío para evitar la acumulación repetitiva de los elementos que se agregan.
 const actualizarCarrito = () => {
     carritoContenedor.innerHTML = ""
 
@@ -111,10 +119,11 @@ const actualizarCarrito = () => {
 
     carritoContenedor.appendChild(div);
 
+    //Se define el item en el local storage, convirtiéndose a formato JSON primero
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     })
-
+    //Esta parte del código se encarga de que el contador del carrito aparezca cuando los elementos que se añaden son mayores a 0
     contadorCarrito.innerText = carrito.length;
     if(carrito.length===0){
         contadorCarrito.innerText = "";
@@ -126,21 +135,14 @@ const actualizarCarrito = () => {
 
 }
 
-/* const productos = [
-    { id: 1, nombre: "Morning Glory V4", marca: "JHS Pedals", precio: 199, genero: "worship", img: "./img/1.jpg" },
-    { id: 2, nombre: "Tube Screamer TS9", marca: "Ibanez", precio: 150, genero: "blues", img: "./img/2.jpg" },
-    { id: 3, nombre: "The Duellist", marca: "King Tone", precio: 350, genero: "blues", img: "./img/3.jpg" },
-    ] */
-
-/*     localStorage.setItem("carrito", JSON.stringify(productos)); */
-
-/*     let carrito = JSON.parse(localStorage.getItem("carrito")); */
+//Se definen los query selector para la ventana modal que contiene el carrito
 
     let cerrarModal = document.querySelectorAll(".cerrar")[0];
     let modalC = document.querySelectorAll(".modalContenedor")[0];
     let modal = document.querySelectorAll(".modalCarrito")[0];
     let abrirModal =  document.querySelectorAll(".abrir")[0];
 
+//Se define el evento que tendrá el carrito cuando deba ser oculto
     cerrarModal.addEventListener("click",function(e){
         e.preventDefault()
         modal.style.transform = "translateY(-200vh)";
@@ -150,7 +152,7 @@ const actualizarCarrito = () => {
         modalC.style.visibility = "hidden";
     }
     )
-
+//Se define el evento que tendrá el carrito cuando deba ser mostrado
     abrirModal.addEventListener("click",function(e){
         e.preventDefault()
         modal.style.transform = "translateY(0)";
@@ -160,16 +162,3 @@ const actualizarCarrito = () => {
         modalC.style.visibility = "visible";
     }
     )
-
-/* const n = parseInt(prompt("Ingrese el número de datos"));
-
-for(let i=0; i<n; i++){
-    let dato = prompt("Ingrese el dato");
-    carrito.push(dato);
-    console.log(carrito);
-}
-
-carrito.forEach(itm){
-    let div = document.createElement("div");
-    div.innerHTML = carrito.find()
-} */
