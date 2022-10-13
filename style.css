@@ -4,6 +4,7 @@ header{
     font-family: 'bebas neue';
     font-size: 3em;
     align-items: center;
+    height: 25vh;
 }
 .general{
     display: flex;
@@ -97,28 +98,34 @@ body{
     cursor: pointer;
 }
 .abrir{
-    width: 12vw;
+    padding: 0 2em;
     font-family: 'Montserrat','sans-serif';
     text-decoration: none;
     font-size: 0.3em;
     position: absolute;
     right: 3em;
     border: 3em;
-    background-color: brown;
+    background-color: transparent;
     height: 4em;
     border-radius: 100px;
     color: white;
 }
 .abrir:hover{
     cursor: pointer;
-    background-color: black;
-    transition: 0.4s;
 }
 .abrir:link{
     color:black;
 }
 .abrir:visited{
     color:black;
+}
+.abrir img{
+    width: 50px;
+    filter: invert(40%);
+}
+.abrir img:hover{
+    filter: invert(100%);
+    transition: 0.4s;
 }
 .items{
     display: flex;
@@ -127,8 +134,8 @@ body{
 .items p{
     padding: 0 1em 0 1em;
 }
-.items button{
-    background-color:rgba(243, 47, 70);
+.botonEliminar{
+    background-color:brown;
     border-radius: 50%;
     border-color: transparent;
     color:white;
@@ -137,9 +144,21 @@ body{
 }
 #contadorCarrito{
     font-size: 0.8em;
-    background-color: white;
+    background-color: brown;
     border-radius: 10px;
-    color:black;
+    color:white;
     width: 2em;
     border: 2em;
+}
+.botonSumar,.botonRestar{
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.counter{
+    display: flex;
+    flex-direction: column;
+}
+.encabezado{
+    width: 20vw;
 }

@@ -42,6 +42,7 @@ const overdrives = [
 
 botonVaciar.addEventListener("click", () => {
     carrito.length = 0;
+    localStorage.clear();
     actualizarCarrito();
 })
 
@@ -61,7 +62,6 @@ for(const overdrive of overdrives){
     boton.addEventListener("click", () => {
         agregarAlCarrito(overdrive.id);
     })
-
 }
 
 const agregarAlCarrito = (prodID) => {
@@ -86,6 +86,9 @@ const eliminarDelCarrito = (prodID) => {
     const item = carrito.find((prod) => prod.id === prodID);
     const indice = carrito.indexOf(item);
     carrito.splice(indice,1);
+    if(carrito.length===0){
+        localStorage.clear();
+    }
     actualizarCarrito();
 }
 
@@ -97,14 +100,19 @@ const actualizarCarrito = () => {
     div.className = ('items')
     div.innerHTML = `<tbody>
     <p>${prod.nombre}</p>
-    <p>${prod.precio} USD</p>
     <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+    <div class="counter">
+    <button id="agregar${prod.id}" class="botonSumar">+</button>
+    <button onclick = "contarMenos(${prod.id})" class="botonRestar">-</button>
+    </div>
+    <p>Precio: ${prod.precio} USD</p>
     <button onclick = "eliminarDelCarrito(${prod.id})" class="botonEliminar">X</button>
     </tbody>`
 
     carritoContenedor.appendChild(div);
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
+
     })
 
     contadorCarrito.innerText = carrito.length;
