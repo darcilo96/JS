@@ -66,6 +66,23 @@ for(const overdrive of overdrives){
 
     boton.addEventListener("click", () => {
         agregarAlCarrito(overdrive.id);
+    
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: false,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        
+        Toast.fire({
+            icon: 'success',
+            title: `Se agregó ${overdrive.nombre} al carrito`
+        })
     })
 }
 
@@ -107,7 +124,7 @@ const actualizarCarrito = () => {
     const div = document.createElement("div");
     div.className = ('items')
     div.innerHTML = `<tbody>
-    <p>${prod.nombre}</p>
+    <p class="titulos">${prod.nombre}</p>
     <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
     <div class="counter">
     <button id="agregar${prod.id}" class="botonSumar">+</button>

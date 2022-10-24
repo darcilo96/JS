@@ -14,7 +14,7 @@ header{
 .general div{
     padding: 1.5em;
     margin:2em;
-    border-radius: 2em;
+    border-radius: 1em;
     background-color: white;
     font-family: 'montserrat';
     display: flex;
@@ -161,4 +161,12 @@ body{
 }
 .encabezado{
     width: 20vw;
+}
+tbody p{
+    display: flex;
+    flex-wrap: wrap;
+}
+.swal2-popup {
+    font-size: 1em !important;
+    font-family: 'Montserrat', 'sans-serif'!important;
 }
