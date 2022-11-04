@@ -170,3 +170,8 @@ tbody p{
     font-size: 1em !important;
     font-family: 'Montserrat', 'sans-serif'!important;
 }
+.compras{
+    display: flex;
+    width: 21vw;
+    justify-content: space-between;
+}

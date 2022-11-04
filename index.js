@@ -13,6 +13,9 @@ const contadorCarrito = document.getElementById('contadorCarrito');
 //Llamamos el la parte del texto que exhibe el precio total
 const precioTotal = document.getElementById('precioTotal');
 
+//Llamamos el la parte del texto que exhibe el precio total
+const finalizarCompra = document.getElementById('finalizarCompra');
+
 //Llamamos la parte del precio de cada producto
 const precioProducto = document.getElementsByClassName('precioProducto');
 
@@ -27,21 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+const overdrives = [];
+
 //Array compuesto con diferentes objetos que contienen los overdrives
-const overdrives = [
-{ id: 1, nombre: "Morning Glory V4",cantidad: 1, marca: "JHS Pedals", precio: 199, genero: "worship", img: "./img/1.jpg" },
-{ id: 2, nombre: "Tube Screamer TS9",cantidad: 1, marca: "Ibanez", precio: 150, genero: "blues", img: "./img/2.jpg" },
-{ id: 3, nombre: "The Duellist",cantidad: 1, marca: "King Tone", precio: 350, genero: "blues", img: "./img/3.jpg" },
-{ id: 4, nombre: "Double Barrel",cantidad: 1, marca: "JHS Pedals", precio: 345, genero: "worship", img: "./img/4.jpg" },
-{ id: 5, nombre: "Ages",cantidad: 1, marca: "Walrus Audio", precio: 199, genero: "rock", img: "./img/5.webp" },
-{ id: 6, nombre: "ACS1",cantidad: 1, marca: "Walrus Audio", precio: 399, genero: "rock", img: "./img/6.webp" },
-{ id: 7, nombre: "Blues Driver",cantidad: 1, marca: "Boss", precio: 125, genero: "blues", img: "./img/7.jpg" },
-{ id: 8, nombre: "Gravity",cantidad: 1, marca: "Nordvang Custom", precio: 260, genero: "blues", img: "./img/8.jpg" },
-{ id: 9, nombre: "1981 DRV",cantidad: 1, marca: "1981 Inventions", precio: 250, genero: "worship", img: "./img/9.jpg" },
-{ id: 10, nombre: "Steel String MK2",cantidad: 1, marca: "Vertex Effects", precio: 60, genero: "rock", img: "./img/10.jpg" },
-{ id: 11, nombre: "Timmy",cantidad: 1, marca: "MXR", precio: 130, genero: "worship", img: "./img/11.jpg" },
-{ id: 12, nombre: "Soul Food",cantidad: 1, marca: "EHX", precio: 100, genero: "blues", img: "./img/12.jpg" },
-]
+fetch('./data.json')
+.then(response => response.json())
+.then(data => {
+    data.forEach(
+        overdrive => {
+            overdrives.push(overdrive)
+        }
+    )
+    render();
+})
 
 //Se define el evento en el que se da click en el botón "vaciar el carrito" y se indica que cuando la longitud del array sea cero, se limpie el local storage
 botonVaciar.addEventListener("click", () => {
@@ -51,6 +52,7 @@ botonVaciar.addEventListener("click", () => {
 })
 
 //Genera el DOM, agrega los datos de los productos y sus imágenes
+function render(){
 for(const overdrive of overdrives){
     let div = document.createElement("div");
     div.innerHTML = `<img src="${overdrive.img}"></img>
@@ -85,10 +87,11 @@ for(const overdrive of overdrives){
         })
     })
 }
+}
 
 // Se le indica al programa que busque si el elemento que se está agregando al carrito ya existe, en caso de que si, simplemente le incrementa la cantidad, en cado de que no, entonces lo agrega como un nuevo elemento al carrito
 const agregarAlCarrito = (prodID) => {
-
+    console.log(carrito);
     const existe = carrito.some (prod => prod.id === prodID)
 
     if (existe){
@@ -151,6 +154,7 @@ const actualizarCarrito = () => {
     precioTotal.innerHTML = carrito.reduce((acc, prod) => acc + prod.precio*prod.cantidad, 0);
 
 }
+
 
 //Se definen los query selector para la ventana modal que contiene el carrito
 
